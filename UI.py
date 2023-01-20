@@ -55,7 +55,7 @@ class App:
         self.button.place(relx=0.3, rely=0.9, anchor="center")
 
         #create the text box
-        self.text_box = ctk.CTkTextbox(self.master, width=400, height=500)
+        self.text_box = ctk.CTkTextbox(self.master, width=400, height=500, font=("Arial", 20))
         self.text_box.place(relx=0.7, rely=0.5, anchor="center")
     
     def slider_rows_event(self, value):
