@@ -1150,4 +1150,5 @@ working_on/lotto copy.py
 working_on/rows.json
 working_on/newlotto_standalone.py
 working_on/lotto.py
-working_on
+working_on/
+.gitignore
