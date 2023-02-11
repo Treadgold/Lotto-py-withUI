@@ -1,4 +1,4 @@
-import numpy as np
+import random
 import os
 
 
@@ -13,20 +13,39 @@ def clear_console():
         os.system('clear')
     
 
-def get_numbers(max_value, powerball, number_of_balls_drawn):
-    # Given the max value, powerball and number of balls drawn, return a set of numbers as an array
+def get_numbers(max_value = 40,
+                powerball = 10,
+                number_of_balls_drawn = 6):
+        
+    # make list of numbers for main draw
+    balls = [str(i).zfill(2) for i in range(1, max_value + 1)]
+
+    # make list of numbers for powerball
+    if powerball != 0:
+        powerball = [str(i).zfill(2) for i in range(1, powerball + 1)]
+
+    # shuffle the balls
+    random.shuffle(balls)
     
-    balls = np.array(range(1, max_value + 1))
+    # take a sample of the balls
+    # Sort them so they are in order
+    drawn_balls = sorted((balls[:number_of_balls_drawn]))
+    
+    # shuffle the powerball
     if powerball != 0:
-        powerball = list(range(1, powerball + 1))
-    draw = np.random.choice(balls, number_of_balls_drawn, replace=False)
-    if powerball != 0:
-        powerball = np.random.choice(powerball, 1, replace=False)
-        return draw, powerball
-    return draw
+        random.shuffle(powerball)
+        drawn_powerball = powerball[0]
+        # if powerball is not 0, return both the main draw and the powerball
+        # as a tuple
+        
+        final = (drawn_balls, drawn_powerball)
+        return final
+
+    #otherwise return just the main draw
+    return drawn_balls
 
 
-def get_lines(lines, max_value, number_of_balls_drawn, powerball=0):
+def get_lines(lines = 6, max_value = 40, number_of_balls_drawn = 6, powerball=10):
     # Generate a set of numbers for the number of lines requested
     # does this by calling get_numbers() and appending the result to a list
     
@@ -36,10 +55,6 @@ def get_lines(lines, max_value, number_of_balls_drawn, powerball=0):
     return all_sets
 
 
-def print_set(set):
-    # takes input as list of arrays and prints them out in a nice format
-    for line in set:
-        for number in line:
-            print(number, end=' ')
-        print("")
+
+
 
