@@ -11,7 +11,7 @@ Then run the UI
     python UI.py
 
 
-Options:
+# Options:
 
 You can change:
 1. number of rows to draw. 1 to 30
